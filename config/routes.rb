@@ -1,6 +1,8 @@
 Phandicap::Application.routes.draw do
   
   
+  resources :membres
+
   resources :candidatures
   
   # The priority is based upon order of creation:
