@@ -7,8 +7,15 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-
+    <%  if session[:membre_id] %>
+      <%= link_to "Deconnection", session_path(:id => session[:membre_id]), :method => :delete %>
+    <% end %>
+  <% flash.each do |key, value| %>
+		<%= content_tag(:div, raw(value), :class => "flash #{key}") %>
+	<% end %>
 <%= yield %>
-
+<hr />
+PARAMS : <%= params %> <br />
+SESSION : <%= session %>
 </body>
 </html>

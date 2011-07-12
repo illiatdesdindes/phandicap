@@ -1,7 +1,7 @@
-<%= form_for(@candidature) do |f| %>
+<%= form_for [@candidature] do |f| %>
   <% if @candidature.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@candidature.errors.count, "error") %> prohibited this candidature from being saved:</h2>
+      <h2><%= pluralize(@candidature.errors.count, "erreur") %> :</h2>
 
       <ul>
       <% @candidature.errors.full_messages.each do |msg| %>
@@ -15,10 +15,6 @@
   <div class="field">
     <%= f.label :evenement %><br />
     <%= f.text_area :evenement, :rows => 5 %>
-  </div>
-  <div class="field">
-    <%= f.label :statu %><br />
-    <%= f.text_field :statu %>
   </div>
   <div class="actions">
     <%= f.submit %>

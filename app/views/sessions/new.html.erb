@@ -1,0 +1,11 @@
+<h1>Se connecter</h1>
+
+<%= form_for @membre, :url => sessions_path do |f| %>
+  <div class="field">
+    <%= f.label :mail %>
+    <%= f.text_field  :mail %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Se connecter" %>
+  </div>
+<% end %>

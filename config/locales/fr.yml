@@ -204,7 +204,8 @@ fr:
       less_than_or_equal_to: "doit être inférieur ou égal à %{count}"
       odd: "doit être impair"
       even: "doit être pair"
-    
+      taken: "n'est pas disponible"
+      
   activerecord:
     errors:
       template: #&errors_template
@@ -217,7 +218,7 @@ fr:
         taken: "n'est pas disponible"
         record_invalid: "La validation a échoué : %{errors}"
         <<: *errors_messages
-      template:
-        <<: *errors_template
+      #template:
+       # <<: *errors_template
       full_messages:
         format: "%{attribute} %{message}"

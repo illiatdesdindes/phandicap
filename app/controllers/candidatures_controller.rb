@@ -25,7 +25,6 @@ class CandidaturesController < ApplicationController
   # GET /candidatures/new.xml
   def new
     @candidature = Candidature.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @candidature }
@@ -40,11 +39,20 @@ class CandidaturesController < ApplicationController
   # POST /candidatures
   # POST /candidatures.xml
   def create
-    @candidature = Candidature.new(params[:candidature])
-
+    @membre = current_membre
+    
+    if current_membre.nil?
+      flash[:notice] = 'Veuillez vous authentifier'
+      redirect_to new_membre_path
+      return
+    end
+    
+    @candidature = @membre.candidatures.new(params[:candidature])
+      
     respond_to do |format|
       if @candidature.save
-        format.html { redirect_to(@candidature, :notice => 'Candidature was successfully created.') }
+        flash[:success] = 'Votre candidature est enregistr&eacute, nous vous contacterons pour vous confirmer la validit&eacute de l\'&eacute;venement'
+        format.html { redirect_to(@candidature) }
         format.xml  { render :xml => @candidature, :status => :created, :location => @candidature }
       else
         format.html { render :action => "new" }

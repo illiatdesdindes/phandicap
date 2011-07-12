@@ -10,14 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110711172455) do
+ActiveRecord::Schema.define(:version => 20110712122443) do
 
   create_table "candidatures", :force => true do |t|
     t.text     "evenement"
-    t.string   "statu",      :default => "nouvelle"
+    t.string   "statut",     :default => "nouvelle"
+    t.integer  "membre_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "membre_id"
+    t.string   "whodunit"
   end
 
   create_table "membres", :force => true do |t|
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20110711172455) do
     t.string   "telephone"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin",      :default => false
   end
 
 end

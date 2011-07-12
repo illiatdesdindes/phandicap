@@ -1,6 +1,14 @@
 Phandicap::Application.routes.draw do
   
   
+  #get "sessions/new"
+  #get "sessions/create"
+  #get "sessions/destroy"
+  
+  root :to => 'membres#new'
+  
+  resources :sessions, :only => [:new, :create, :destroy]
+
   resources :membres
 
   resources :candidatures

@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Evenement</th>
-    <th>Statu</th>
+    <th>Statut</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,7 +12,7 @@
 <% @candidatures.each do |candidature| %>
   <tr>
     <td><%= candidature.evenement %></td>
-    <td><%= candidature.statu %></td>
+    <td><%= candidature.statut %></td>
     <td><%= link_to 'Voir', candidature %></td>
     <td><%= link_to 'Editer', edit_candidature_path(candidature) %></td>
     <td><%= link_to 'Effacer', candidature, :confirm => 'Etes vous sure?', :method => :delete %></td>

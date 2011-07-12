@@ -1,4 +1,4 @@
-class MembresController < ApplicationController
+class MembresController < ApplicationController  
   # GET /membres
   # GET /membres.xml
   def index
@@ -41,14 +41,19 @@ class MembresController < ApplicationController
   # POST /membres.xml
   def create
     @membre = Membre.new(params[:membre])
-
+    
+    first_membre_to_admin @membre 
+       
     respond_to do |format|
       if @membre.save
-        format.html { redirect_to(@membre, :notice => 'Membre was successfully created.') }
-        format.xml  { render :xml => @membre, :status => :created, :location => @membre }
+        login @membre
+        flash[:success] = 'L\'inscritpion est valid&eacute;'
+        
+        format.html { redirect_to new_candidature_path }
+        #format.xml  { render :xml => @membre, :status => :created, :location => @membre }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @membre.errors, :status => :unprocessable_entity }
+        #format.xml  { render :xml => @membre.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -80,4 +85,16 @@ class MembresController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  private
+  
+  def first_membre_to_admin membre
+    if Membre.count == 0 #and membre.errors.nil?
+      membre.admin = true
+      flash[:info] = 'Vous etes admin'
+    else
+      membre.admin = false
+    end
+  end
+  
 end
