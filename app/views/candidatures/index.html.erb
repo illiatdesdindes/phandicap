@@ -1,25 +1,34 @@
 <h1>Liste des candidatures</h1>
-
+<%= link_to 'Nouvelle Candidature', new_candidature_path %>
+<br />
 <table>
   <tr>
+    <th>Organisateur</th>
     <th>Evenement</th>
     <th>Statut</th>
-    <th></th>
-    <th></th>
     <th></th>
   </tr>
 
 <% @candidatures.each do |candidature| %>
-  <tr>
-    <td><%= candidature.evenement %></td>
-    <td><%= candidature.statut %></td>
-    <td><%= link_to 'Voir', candidature %></td>
-    <td><%= link_to 'Editer', edit_candidature_path(candidature) %></td>
-    <td><%= link_to 'Effacer', candidature, :confirm => 'Etes vous sure?', :method => :delete %></td>
-  </tr>
+  <% if candidature.valide? or current_membre.admin? %>
+    <tr>
+      <td><%= candidature.membre.nom %></td>
+      <td><%= strip_tags(truncate( candidature.evenement , :length => 140))%></td>
+      <td><%= candidature.statut %></td>
+      <td>
+        <%= link_to 'Voir', candidature %>
+        <% if current_membre.admin? %>
+          |
+          <%= link_to 'Editer', edit_candidature_path(candidature) %>
+          |
+          <%= link_to 'Effacer', candidature, :confirm => 'Etes vous sure?', :method => :delete %>
+          |
+          <%= link_to raw('valid&eacute') , valide_candidature_path(candidature) %>
+          |
+          <%= link_to 'En attente', attente_candidature_path(candidature) %>
+        <%end%>
+      </td>
+    </tr>
+  <%end%>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'Nouvelle Candidature', new_candidature_path %>

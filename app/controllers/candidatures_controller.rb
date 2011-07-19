@@ -1,6 +1,8 @@
 class CandidaturesController < ApplicationController
   # GET /candidatures
   # GET /candidatures.xml
+  
+  before_filter :is_admin, :only => [:attente, :valide, :destroy, :update, :create]
   def index
     @candidatures = Candidature.all
 
@@ -88,4 +90,29 @@ class CandidaturesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def valide
+    @candidature = Candidature.find(params[:id])
+    @candidature.statut = "Ok"
+    @candidature.save
+    flash[:success] = "Evenement valid&eacute"
+    redirect_to candidatures_path
+  end
+  
+  def attente
+    @candidature = Candidature.find(params[:id])
+    @candidature.statut = "En attente"
+    @candidature.save
+    flash[:notice] = "Evenement en attente"
+    redirect_to candidatures_path
+  end
+  
+  private
+    def is_admin
+      unless current_membre.admin?
+        flash[:error] = "erreur"
+        redirect_to candidatures_path
+      end
+    end
+  
 end

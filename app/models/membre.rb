@@ -2,6 +2,8 @@ class Membre < ActiveRecord::Base
   
   has_many :candidatures, :dependent => :destroy
   
+  attr_accessible :nom, :mail, :adresse, :telephone
+  
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
 	validates :nom,  :presence => true,

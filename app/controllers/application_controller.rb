@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
+  helper_method :current_membre
+  
   def login membre
     session[:membre_id] = membre.id
   end
@@ -10,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
   
   def current_membre
-    Membre.find_by_id(session[:membre_id])
+    Membre.find_by_id(session[:membre_id]) or Membre.new
   end
   
 end

@@ -13,6 +13,9 @@ Phandicap::Application.routes.draw do
 
   resources :candidatures
   
+  match "candidatures/valide/:id" => "candidatures#valide", :as => :valide_candidature
+  match "candidatures/attente/:id" => "candidatures#attente", :as => :attente_candidature
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

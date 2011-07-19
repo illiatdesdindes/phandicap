@@ -1,6 +1,22 @@
-<h3>Evenement proposé:</h3>
+<%= link_to "Liste des Candidatures", candidatures_path %>
+<br />
+<% if current_membre.admin? %>
+  <%= link_to 'Editer', edit_candidature_path(@candidature) %>
+  |
+  <%= link_to 'Effacer', @candidature, :confirm => 'Etes vous sure?', :method => :delete %>
+  |
+  <%= link_to raw('valid&eacute') , valide_candidature_path(@candidature) %>
+  |
+  <%= link_to 'En attente', attente_candidature_path(@candidature) %>
+<%end%>
+<h3>
+  Evenement proposé par 
+  <%= link_to @candidature.membre.nom, membre_path(@candidature.membre) %>
+  :
+</h3>
 <p>
-  <%= @candidature.evenement %>
+  <%= sanitize(@candidature.evenement) %>
 </p>
+
 
 
