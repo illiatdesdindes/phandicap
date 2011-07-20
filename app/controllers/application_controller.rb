@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
   
   def current_membre
-    Membre.find_by_id(session[:membre_id]) or Membre.new
+    Membre.find_by_id(session[:membre_id])
   end
   
 end

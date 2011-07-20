@@ -10,14 +10,14 @@
   </tr>
 
 <% @candidatures.each do |candidature| %>
-  <% if candidature.valide? or current_membre.admin? %>
+  <% if candidature.valide? or (current_membre and current_membre.admin?) %>
     <tr>
       <td><%= candidature.membre.nom %></td>
       <td><%= strip_tags(truncate( candidature.evenement , :length => 140))%></td>
       <td><%= candidature.statut %></td>
       <td>
         <%= link_to 'Voir', candidature %>
-        <% if current_membre.admin? %>
+        <% if current_membre and current_membre.admin? %>
           |
           <%= link_to 'Editer', edit_candidature_path(candidature) %>
           |

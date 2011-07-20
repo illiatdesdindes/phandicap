@@ -2,7 +2,9 @@ class CandidaturesController < ApplicationController
   # GET /candidatures
   # GET /candidatures.xml
   
-  before_filter :is_admin, :only => [:attente, :valide, :destroy, :update, :create]
+  before_filter :is_connected, :only => [:create, :new]
+  before_filter :is_admin, :only => [:attente, :valide, :destroy, :update]
+  
   def index
     @candidatures = Candidature.all
 
@@ -41,14 +43,7 @@ class CandidaturesController < ApplicationController
   # POST /candidatures
   # POST /candidatures.xml
   def create
-    @membre = current_membre
-    
-    if current_membre.nil?
-      flash[:notice] = 'Veuillez vous authentifier'
-      redirect_to new_membre_path
-      return
-    end
-    
+    @membre = current_membre    
     @candidature = @membre.candidatures.new(params[:candidature])
       
     respond_to do |format|
@@ -114,5 +109,11 @@ class CandidaturesController < ApplicationController
         redirect_to candidatures_path
       end
     end
-  
+    
+    def is_connected
+      if current_membre.nil?
+        flash[:notice] = 'Veuillez vous authentifier'
+        redirect_to new_membre_path
+      end
+    end
 end

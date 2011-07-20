@@ -1,6 +1,10 @@
 Phandicap::Application.routes.draw do
   
   
+  get "cartes/index"
+
+  get "cartes/show"
+
   #get "sessions/new"
   #get "sessions/create"
   #get "sessions/destroy"
