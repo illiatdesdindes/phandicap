@@ -5,11 +5,17 @@ class Candidature < ActiveRecord::Base
   
   validates_presence_of :evenement
   
+  scope :valide, where('statut = "Ok"')
+  
   def valide?
     statut == 'Ok'
   end
   
   def attente?
     statut == 'En attente'
+  end
+  
+  def nouvelle?
+    statut == 'nouvelle'
   end
 end

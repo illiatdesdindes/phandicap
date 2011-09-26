@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  titre: MyString
+  detail: MyText
+  statut: MyString
+  date: 2011-09-26 15:47:55
+  adresse: MyText
+  membre_id: 1
+  region_id: 1
+  whodunit: MyString
+
+two:
+  titre: MyString
+  detail: MyText
+  statut: MyString
+  date: 2011-09-26 15:47:55
+  adresse: MyText
+  membre_id: 1
+  region_id: 1
+  whodunit: MyString

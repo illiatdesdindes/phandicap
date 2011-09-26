@@ -2,37 +2,22 @@ class CandidaturesController < ApplicationController
   # GET /candidatures
   # GET /candidatures.xml
   
-  before_filter :is_connected, :only => [:create, :new]
-  before_filter :is_admin, :only => [:attente, :valide, :destroy, :update]
+  before_filter :is_admin
   
   def index
     @candidatures = Candidature.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @candidatures }
-    end
   end
 
   # GET /candidatures/1
   # GET /candidatures/1.xml
   def show
     @candidature = Candidature.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @candidature }
-    end
   end
 
   # GET /candidatures/new
   # GET /candidatures/new.xml
   def new
     @candidature = Candidature.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @candidature }
-    end
   end
 
   # GET /candidatures/1/edit
@@ -45,16 +30,12 @@ class CandidaturesController < ApplicationController
   def create
     @membre = current_membre    
     @candidature = @membre.candidatures.new(params[:candidature])
-      
-    respond_to do |format|
-      if @candidature.save
-        flash[:success] = 'Votre candidature est enregistr&eacute, nous vous contacterons pour vous confirmer la validit&eacute de l\'&eacute;venement'
-        format.html { redirect_to(@candidature) }
-        format.xml  { render :xml => @candidature, :status => :created, :location => @candidature }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @candidature.errors, :status => :unprocessable_entity }
-      end
+
+    if @candidature.save
+      flash[:success] = 'Votre candidature est enregistr&eacute, nous vous contacterons pour vous confirmer la validit&eacute de l\'&eacute;venement'
+      redirect_to(@candidature)
+    else
+      render :action => "new"
     end
   end
 
@@ -62,15 +43,11 @@ class CandidaturesController < ApplicationController
   # PUT /candidatures/1.xml
   def update
     @candidature = Candidature.find(params[:id])
-
-    respond_to do |format|
-      if @candidature.update_attributes(params[:candidature])
-        format.html { redirect_to(@candidature, :notice => 'Candidature was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @candidature.errors, :status => :unprocessable_entity }
-      end
+    
+    if @candidature.update_attributes(params[:candidature])
+      redirect_to(@candidature, :notice => 'La candidature a &eacute;t&eacute; &eacutedit&eacute;.')
+    else
+      render :action => "edit"
     end
   end
 
@@ -80,10 +57,7 @@ class CandidaturesController < ApplicationController
     @candidature = Candidature.find(params[:id])
     @candidature.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(candidatures_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(candidatures_url)
   end
   
   def valide
@@ -103,10 +77,11 @@ class CandidaturesController < ApplicationController
   end
   
   private
+  
     def is_admin
-      unless current_membre.admin?
-        flash[:error] = "erreur"
-        redirect_to candidatures_path
+      if current_membre and !current_membre.admin?
+        flash[:error] = "Vous n'etes pas administrateur"
+        redirect_to notadmin_path
       end
     end
     

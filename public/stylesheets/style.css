@@ -11,3 +11,15 @@
 .button_to, .button_to > * {display:inline;}
 a , a:visited {color:blue}
 a:hover { color:#181978}
+
+.valide_candidature {
+  background:#e6efc2;
+}
+
+.attente_candidature {
+  background:#fff6bf;
+}
+
+.nouvelle_candidature {
+  background:#d5edf8;
+}

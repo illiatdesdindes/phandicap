@@ -1,5 +1,6 @@
 <%= link_to "Liste des Candidatures", candidatures_path %>
 <br />
+<br />
 <% if current_membre.admin? %>
   <%= link_to 'Editer', edit_candidature_path(@candidature) %>
   |
@@ -15,7 +16,7 @@
   :
 </h3>
 <p>
-  <%= sanitize(@candidature.evenement) %>
+  <%= simple_format sanitize(@candidature.evenement) %>
 </p>
 
 

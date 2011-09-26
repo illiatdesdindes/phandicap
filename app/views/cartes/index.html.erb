@@ -1,2 +1,8 @@
-<h1>Cartes#index</h1>
-<p>Find me in app/views/cartes/index.html.erb</p>
+<h1>Cartes de Visites</h1>
+
+<p>Veuillez renseigner le nom à faire figurer sur la carte de visite</p>
+
+<%= form_tag(show_carte_path) do%>
+  <%= text_field_tag 'nom' %>
+  <%= submit_tag raw('Cr&eacute;er les cartes de Visites') %>
+<%end%>

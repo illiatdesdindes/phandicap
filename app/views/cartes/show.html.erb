@@ -1,2 +1,11 @@
-<h1>Cartes#show</h1>
-<p>Find me in app/views/cartes/show.html.erb</p>
+<div>
+  <%= link_to 'Changer le nom', cartes_path %>
+</div>
+
+<div class="cartes">
+  <% 3.times do %>
+    <div class="carte">
+      <%= image_tag('cartename.jpg') %>
+    </div>
+  <%end%>
+</div>

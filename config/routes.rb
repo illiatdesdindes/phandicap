@@ -1,9 +1,11 @@
 Phandicap::Application.routes.draw do
   
   
-  get "cartes/index"
 
-  get "cartes/show"
+  get "pages/notadmin", :as => :notadmin
+
+  match "cartes" => "cartes#index", :as => :cartes
+  match "cartes/show" => "cartes#show", :as => :show_carte
 
   #get "sessions/new"
   #get "sessions/create"
@@ -16,6 +18,8 @@ Phandicap::Application.routes.draw do
   resources :membres
 
   resources :candidatures
+  
+  resources :evenements
   
   match "candidatures/valide/:id" => "candidatures#valide", :as => :valide_candidature
   match "candidatures/attente/:id" => "candidatures#attente", :as => :attente_candidature
