@@ -1,6 +1,6 @@
 class Evenement < ActiveRecord::Base
   belongs_to :membre
-  #belongs_to :region
+  belongs_to :region
   
   attr_accessible :titre, :detail, :date, :adresse
   
