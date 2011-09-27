@@ -1,6 +1,6 @@
 class Membre < ActiveRecord::Base
   
-  has_many :candidatures, :dependent => :destroy
+  has_many :evenements, :dependent => :destroy
   
   attr_accessible :nom, :mail, :adresse, :telephone
   
@@ -14,10 +14,6 @@ class Membre < ActiveRecord::Base
   
   validates_presence_of :adresse, :telephone
 
-  
-  def admin?
-    admin
-  end
   
   def has_a_valid_candidature
     candidatures.where('candidatures.statut = "Ok"').count > 0 

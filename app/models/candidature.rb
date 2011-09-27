@@ -15,7 +15,7 @@ class Candidature < ActiveRecord::Base
     statut == 'En attente'
   end
   
-  def nouvelle?
-    statut == 'nouvelle'
+  def nouveau?
+    statut == 'nouveau'
   end
 end
