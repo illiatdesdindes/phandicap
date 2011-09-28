@@ -2,7 +2,7 @@ class Evenement < ActiveRecord::Base
   belongs_to :membre
   belongs_to :region
   
-  attr_accessible :titre, :description, :date, :adresse
+  attr_accessible :titre, :description, :date, :adresse, :region_id, :membre_id
   
   validates_presence_of :titre, :description, :date, :adresse
   

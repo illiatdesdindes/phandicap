@@ -19,7 +19,7 @@ class Membre < ActiveRecord::Base
     candidatures.where('candidatures.statut = "Ok"').count > 0 
   end
   
-  def to_label
+  def to_s
     nom
   end
 end
