@@ -2,9 +2,9 @@ class Evenement < ActiveRecord::Base
   belongs_to :membre
   belongs_to :region
   
-  attr_accessible :titre, :detail, :date, :adresse
+  attr_accessible :titre, :description, :date, :adresse
   
-  validates_presence_of :titre, :detail, :date, :adresse
+  validates_presence_of :titre, :description, :date, :adresse
   
   
   def valide?
