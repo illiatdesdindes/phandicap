@@ -16,7 +16,7 @@ class EvenementsController < ApplicationController
 
   def new
     @evenement = Evenement.new
-
+    @regions = Region.all
   end
 
   def edit
@@ -24,8 +24,9 @@ class EvenementsController < ApplicationController
   end
 
   def create    
-    @membre = current_membre    
-    @evenement = @membre.evenements.new(params[:evenement])
+    @region = Region.find(params[:region][:id])
+    @evenement = @region.evenements.build(params[:evenement])
+    @evenement.membre = current_membre
 
     if @evenement.save
       flash[:success] = 'Votre candidature est enregistr&eacute, nous vous contacterons pour vous confirmer la validit&eacute de l\'&eacute;venement'
