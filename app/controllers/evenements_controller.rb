@@ -2,6 +2,7 @@ class EvenementsController < ApplicationController
 
   def index
     @evenements = Evenement.all
+    @regions = Region.all
   end
 
   def show

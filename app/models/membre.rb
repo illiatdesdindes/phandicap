@@ -2,7 +2,7 @@ class Membre < ActiveRecord::Base
   
   has_many :evenements, :dependent => :destroy
   
-  attr_accessible :nom, :mail, :adresse, :telephone
+  attr_accessible :nom, :mail, :adresse, :telephone, :responsable
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

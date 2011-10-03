@@ -11,8 +11,8 @@
 </p>
 
 <p>
-  <b>description:</b>
-  <%= @evenement.description %>
+  <b>description: </b>
+  <%=simple_format sanitize( @evenement.description )%>
 </p>
 
 
@@ -23,7 +23,7 @@
 
 <p>
   <b>Adresse:</b>
-  <%= @evenement.adresse %>
+  <%= simple_format sanitize(@evenement.adresse) %>
 </p>
 
 <p>

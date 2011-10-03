@@ -1,37 +1,28 @@
-<h1>Listing evenements</h1>
 
+
+<% halfRegions = @regions.count / 2 %>
 <table>
   <tr>
-    <th>Titre</th>
-    <th>description</th>
-    <th>Statut</th>
-    <th>Date</th>
-    <th>Adresse</th>
-    <th>Membre</th>
-    <th>Region</th>
-    <th>Whodunit</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <td>
+      <% (0..halfRegions).each do |i| %>
+        <h3 class='evenementsIndex'><%= @regions[i].to_s %></h3>
+        <% @regions[i].evenements.each do |evt| %>
+          <% if evt.ok? %>
+            <b><%= evt.titre %></b><br />
+          <% end %>
+        <% end %>
+        
+      <% end %>
+    </td>
+    <td>
+      <% (halfRegions+1..@regions.count-1).each do |i| %>
+        <h3 class='evenementsIndex'><%= @regions[i].to_s %></h3>
+        <% @regions[i].evenements.each do |evt| %>
+          <% if evt.ok? %>
+            <b><%= evt.titre %></b><br />
+          <% end %>
+        <% end %>
+      <% end %>    
+    </td>
   </tr>
-
-<% @evenements.each do |evenement| %>
-  <tr>
-    <td><%= evenement.titre %></td>
-    <td><%= evenement.description %></td>
-    <td><%= evenement.statut %></td>
-    <td><%= evenement.date %></td>
-    <td><%= evenement.adresse %></td>
-    <td><%= evenement.membre_id %></td>
-    <td><%= evenement.region_id %></td>
-    <td><%= evenement.whodunit %></td>
-    <td><%= link_to 'Show', evenement %></td>
-    <td><%= link_to 'Edit', edit_evenement_path(evenement) %></td>
-    <td><%= link_to 'Destroy', evenement, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Evenement', new_evenement_path %>

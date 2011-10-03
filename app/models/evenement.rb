@@ -7,7 +7,7 @@ class Evenement < ActiveRecord::Base
   validates_presence_of :titre, :description, :date, :adresse
   
   
-  def valide?
+  def ok?
     statut == 'Ok'
   end
   

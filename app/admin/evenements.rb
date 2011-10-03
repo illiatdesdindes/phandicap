@@ -5,7 +5,7 @@ ActiveAdmin.register Evenement do
     column :statut
     column :date
     column :region_id do |evenement|
-      evenement.region.nom
+      evenement.region.to_s
     end
     default_actions
   end
