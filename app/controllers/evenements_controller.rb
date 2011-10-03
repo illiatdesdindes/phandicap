@@ -3,6 +3,9 @@ class EvenementsController < ApplicationController
   def index
     @evenements = Evenement.all
     @regions = Region.all
+    if @region.nil?
+      redirect_to pasderegion_path
+    end
   end
 
   def show

@@ -7,6 +7,7 @@ Phandicap::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   get "pages/notadmin", :as => :notadmin
+  get "pages/pasderegion", :as => :pasderegion
 
   match "cartes" => "cartes#index", :as => :cartes
   match "cartes/show" => "cartes#show", :as => :show_carte
