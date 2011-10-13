@@ -1,0 +1,20 @@
+
+
+.statut_evenement {
+  padding-left: 2px;
+  padding-right: 2px;
+  text-align:center;
+  border:1px solid #BFBFBF;
+}  
+
+.ok_evenement {
+  background:#e6efc2;
+}
+
+.attente_evenement {
+  background:#fff6bf;
+}
+
+.nouveau_evenement {
+  background:#d5edf8;
+}

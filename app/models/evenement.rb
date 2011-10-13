@@ -2,17 +2,17 @@ class Evenement < ActiveRecord::Base
   belongs_to :membre
   belongs_to :region
   
-  attr_accessible :titre, :description, :date, :adresse, :region_id, :membre_id
+  attr_accessible :titre, :description, :date, :adresse, :region_id, :membre_id, :statut
   
   validates_presence_of :titre, :description, :date, :adresse
   
   
   def ok?
-    statut == 'Ok'
+    statut == 'ok'
   end
   
   def attente?
-    statut == 'En attente'
+    statut == 'attente'
   end
   
   def nouveau?
